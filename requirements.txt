@@ -1,0 +1,2 @@
+pyinstaller>=3.2.1
+textwrap
