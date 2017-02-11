@@ -2,7 +2,7 @@
 
 Have you ever heard about trojan droppers ? you can read about them from [here](https://blog.malwarebytes.com/threats/trojan-dropper/).
 
-Dr0p1t let you create dropper like any tool but this time FUD and with some tricks ;)
+Dr0p1t let you create dropper like any tool but this time FUD with some tricks ;)
 
 #Features
 - Works with Windows and Linux
