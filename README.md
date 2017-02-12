@@ -84,6 +84,8 @@ Libraries in windows_requirements.txt are used to enable unicodes in windows whi
 - Injecting dr0pp3r to another program
 - More modules
 
+[Stay Tuned](https://github.com/D4Vinci/Dr0p1t-Framework/projects/1)
+
 ##Disclaimer
 Dr0p1t Framework not responsible for misuse and for illegal purposes.Use it only for work or educational purpose !!!
 
