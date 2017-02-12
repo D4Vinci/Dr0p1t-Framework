@@ -80,6 +80,8 @@ Libraries in windows_requirements.txt are used to enable unicodes in windows whi
 ##Todo
 - Python 2 support
 - Work on UAC bypass
+- Work on spreading on device and may be in lan too
+- Injecting dr0pp3r to another program
 - More modules
 
 ##Disclaimer
