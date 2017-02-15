@@ -56,11 +56,17 @@ def clear():
     else:
         x=os.system("clear")
 
+def prepare_folder(folder):
+    x  = shutil.rmtree(folder, ignore_errors=True)
+    xx = os.mkdir(folder)
+    xfx = open( os.path.join(folder,"README.md"),"w")
+    xfx.write("# Don't mess with this folder or delete it\n")
+    xfx.close()
+
+
 def main():
-    x  = shutil.rmtree("temp", ignore_errors=True)
-    xx = os.mkdir("temp")
-    x  = shutil.rmtree("output", ignore_errors=True)
-    xx = os.mkdir("output")
+    prepare_folder("temp")
+    prepare_folder("output")
     #clear()
     if args.u:
         updater.check()
@@ -179,7 +185,7 @@ def main():
         x = subprocess.Popen(os.path.join("utils","upx.exe") +" -9 "+os.path.join("output",file_name) ,shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT )
 
 
-    colored_print( " [*] Finished and saved our Dr0pp3r as "+file_name+".exe in output folder ( happy hunting )","m" )
+    colored_print( " [*] Finished and saved our Dr0pp3r as "+file_name+" in output folder ( happy hunting )","m" )
 
 if __name__ == '__main__':
     main()

