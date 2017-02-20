@@ -1,8 +1,11 @@
 #Written by: Karim shoair - D4Vinci ( Dr0p1t-Framework )
-from urllib.request import urlopen
-from .color import *
-from . import color
-import os
+from core.color import *
+from core import color
+import os,sys
+if sys.version_info[0]==3:
+	from urllib.request import urlopen
+elif sys.version_info[0]==2:
+	from urllib import urlopen
 
 def check():
 	response = urlopen('https://raw.githubusercontent.com/D4Vinci/Dr0p1t-Framework/master/core/version.txt')

