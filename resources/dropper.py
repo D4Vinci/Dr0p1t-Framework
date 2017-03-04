@@ -3,6 +3,7 @@
 #Start
 from os import popen,_exit
 from platform import architecture
+from urllib import *
 
 def fire_things_up(url,arch="No"):
     url   = ""
