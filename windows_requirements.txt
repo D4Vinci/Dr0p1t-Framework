@@ -1,2 +1,0 @@
-win_unicode_console>=0.5 
-colorama>=0.3.7
