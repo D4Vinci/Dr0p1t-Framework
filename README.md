@@ -1,7 +1,8 @@
-# Dr0p1t-Framework ![Stage](https://img.shields.io/badge/Release-STABLE-brightgreen.svg) [![Python 3.5](https://img.shields.io/badge/Python-3.5-yellow.svg)](http://www.python.org/download/) [![Python 2.7](https://img.shields.io/badge/Python-2.7-yellow.svg)](http://www.python.org/download/) ![Build Status](https://img.shields.io/badge/Version-1.1.1-red.svg)
+# Dr0p1t-Framework ![Stage](https://img.shields.io/badge/Release-STABLE-brightgreen.svg) [![Python 3.5](https://img.shields.io/badge/Python-3.5-yellow.svg)](http://www.python.org/download/) [![Python 2.7](https://img.shields.io/badge/Python-2.7-yellow.svg)](http://www.python.org/download/) ![Build Status](https://img.shields.io/badge/Version-1.2-red.svg)
 ###### *** Version 1.2 , see CHANGELOG.md file ***
 
 Have you ever heard about trojan droppers ?
+
 In short dropper is type of trojans that downloads other malwares and Dr0p1t gives you the chance to create a dropper that bypass most AVs and have some tricks ;)
 
 # Features
