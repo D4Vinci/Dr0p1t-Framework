@@ -43,7 +43,11 @@ def PyInstaller():
     if os.name=="nt":
         installer = "pyinstaller"
     else:
-        installer = "wine /root/.wine/drive_c/Python27/python.exe /root/.wine/drive_c/Python27/Scripts/pyinstaller-script.py"
+        if sys.platform == "darwin": # On osx, the default .wine directory is located on $HOME/.wine/
+            installer = "wine " + os.environ['HOME'] + "/.wine/drive_c/Python27/python.exe " + os.environ['HOME'] + "/.wine/drive_c/Python27/Scripts/pyinstaller-script.py"
+        else: # TODO: find all defaults location for .wine , or request it directely to the user if not found.
+            installer = "wine /root/.wine/drive_c/Python27/python.exe /root/.wine/drive_c/Python27/Scripts/pyinstaller-script.py"
+
     p = subprocess.Popen( installer + " -h",shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE )
     x = p.stdout.read().decode()
     if x == "":
