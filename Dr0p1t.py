@@ -101,7 +101,7 @@ def main():
 
     if not args.q:
         banner()
-    
+
     if os.name=="nt":
         installer = "pyinstaller"
         exe = ""
