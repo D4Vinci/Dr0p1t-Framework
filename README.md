@@ -86,7 +86,7 @@ options:
 
 >The recommended version for Python 2 is 2.7.x , the recommended version for Python 3 is 3.5.x and don't use 3.6 because it's not supported yet by PyInstaller
 
-### Needed dependencies for Linux and OSX
+### Needed dependencies for Linux
 - Wine
 - apt
 - Python 2.7 on Wine Machine
@@ -98,7 +98,7 @@ options:
 - Modules in windows_requirements.txt
 
 # Installation
-- On Linux and OSX
+- On Linux 
 ```
 git clone https://github.com/D4Vinci/Dr0p1t-Framework.git
 chmod 777 -R Dr0p1t-Framework
