@@ -14,8 +14,8 @@ In short dropper is type of trojans that downloads other malwares and Dr0p1t giv
 
 **+Framework properties:**
 - Works with Windows, Linux and now have OSX support ( Thanks to @sm4sh3r )
-- Dr0p1t-Server feature (beta) so now you can work from browser [See how to work with Dr0p1t-Server](#Work-with-Dr0p1t-Server)
-- Dr0p1t-Server have a scam option (beta) [See how to work with Dr0p1t-Server](#Work-with-Dr0p1t-Server)
+- Dr0p1t-Server feature (beta) so now you can work from browser [See how to work with Dr0p1t-Server](#work-with-dr0p1t-server)
+- Dr0p1t-Server have a scam option (beta) [See how to work with Dr0p1t-Server](#work-with-dr0p1t-server)
 
 **+Modules:**
 - Find and kill antivirus before running the malware.
@@ -141,11 +141,15 @@ Now let's run our server script :
 python Dr0p1t_Server.py
 ```
 After running the server script, it will start to listen to all the connection coming to port 5000 using flask.
+
 Now to use the server from your device open in browser either 127.0.0.1:5000 or [Your IP]:5000.
+
 To open it from other devices in LAN open [Your Local IP]:5000 and for other devices in WAN open [Your Global IP]:5000 but make sure first that you configured you router to forward port 5000 connection to you.
 
-After opening the serve page you will see a simple website with a simple design asking you for data needed [See server screenshots](## Server screenshots)
+After opening the serve page you will see a simple website with a simple design asking you for data needed [See server screenshots](#server-screenshots)
+
 Then submit the data then it will be verified through some processes then the exe file will be generated and you will be redirected to page telling you the scam link.
+
 After entering the link you will see a scam to download the dropper which it by default Adobe flash download page.
 To replace the scam with yours replace the file "Scam.html" content with yours but remember the variables ( Don't remove it ).
 
