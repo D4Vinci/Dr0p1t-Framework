@@ -12,12 +12,12 @@ In short dropper is type of trojans that downloads other malwares and Dr0p1t giv
 - Escape disk forensics by making all the files dropper create and dropper also cleans its content before deletion
 - Clear event log after finishing.
 
-**+Framework properties:**
+**+ Framework properties:**
 - Works with Windows, Linux and now have OSX support ( Thanks to @sm4sh3r )
 - Dr0p1t-Server feature (beta) so now you can work from browser [See how to work with Dr0p1t-Server](#work-with-dr0p1t-server)
 - Dr0p1t-Server have a scam option (beta) [See how to work with Dr0p1t-Server](#work-with-dr0p1t-server)
 
-**+Modules:**
+**+ Modules:**
 - Find and kill antivirus before running the malware.
 - The ability to disable UAC.
 - The ability to run your malware as admin.
@@ -87,9 +87,8 @@ options:
 >The recommended version for Python 2 is 2.7.x , the recommended version for Python 3 is 3.5.x and don't use 3.6 because it's not supported yet by PyInstaller
 
 ### Needed dependencies for Linux
-- Wine
 - apt
-- Python 2.7 on Wine Machine
+- Others will be installed from install.sh file
 
 >Note : You must have root access
 
