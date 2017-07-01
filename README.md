@@ -14,8 +14,8 @@ In short dropper is type of trojans that downloads other malwares and Dr0p1t giv
 
 **+Framework properties:**
 - Works with Windows, Linux and now have OSX support ( Thanks to @sm4sh3r )
-- Dr0p1t-Server feature (beta) so now you can work from browser [See how to work with Dr0p1t-Server](#Work with Dr0p1t-Server)
-- Dr0p1t-Server have a scam option (beta) [See how to work with Dr0p1t-Server](#Work with Dr0p1t-Server)
+- Dr0p1t-Server feature (beta) so now you can work from browser [See how to work with Dr0p1t-Server](#Work-with-Dr0p1t-Server)
+- Dr0p1t-Server have a scam option (beta) [See how to work with Dr0p1t-Server](#Work-with-Dr0p1t-Server)
 
 **+Modules:**
 - Find and kill antivirus before running the malware.
@@ -36,12 +36,12 @@ In short dropper is type of trojans that downloads other malwares and Dr0p1t giv
 ## On Windows
 <img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Windows/WinTest-1.JPG" width="100%"></img>
 
-[See more]("https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Windows")
+[See more](https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Windows)
 
 ## On Linux (Kali linux)
 <img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Linux/LinuxTest-1.png" width="100%"></img>
 
-[See more]("https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Linux")
+[See more](https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Linux)
 
 ## On OSX
 Still not fully tested! Need some contributors and testers :smile:
@@ -122,7 +122,7 @@ python Dr0p1t.py
 - Ubuntu 14.04-16.04 LTS
 - Windows 10/8.1/8
 
-#Work with Dr0p1t-Server
+# Work with Dr0p1t-Server
 >Note : Server is still in beta version and it have a lot of features to add and also a better design [ Need a designer to contribute :D ]
 
 ## Prerequisites
@@ -155,8 +155,8 @@ To replace the scam with yours replace the file "Scam.html" content with yours b
 <img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Linux/LinuxServerTest-3.png" width="100%"></img>
 <img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Linux/LinuxServerTest-4.png" width="100%"></img>
 
-[See more for Windows]("https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Windows")
-[See more for Linux]("https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Linux")
+[See more for Windows](https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Windows)
+[See more for Linux](https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Linux)
 
 # No distribute scan ( Please don't scan with virus total:3 )
 <img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/nodistribute_scan.png" width="100%"></img>
