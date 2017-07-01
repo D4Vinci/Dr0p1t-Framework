@@ -7,8 +7,8 @@
 - [BUG fix] Bypassed the error in the Pyinstaller **"FATAL ERROR"** with replacing subprocess Pipes with files :smile:
 - [Stealth] Escaping disk forensics by making all the files dropper create and dropper also cleans its content before deletion.
 - [Feature] Adds ZIP files support so now you can compress your executable to zip file before uploading
-- [Feature] Added Dr0p1t-Server feature (beta) so now you can work from browser [See how to work with Dr0p1t-Server](https://github.com/D4Vinci/Dr0p1t-Framework#Work-with-Dr0p1t-Server)
-- [Feature] Added Scamming feature (beta) to Dr0p1t-Server [See how to edit Dr0p1t-Server scam ](https://github.com/D4Vinci/Dr0p1t-Framework#Work-with-Dr0p1t-Server)
+- [Feature] Added Dr0p1t-Server feature (beta) so now you can work from browser [See how to work with Dr0p1t-Server](https://github.com/D4Vinci/Dr0p1t-Framework#work-with-dr0p1t-server)
+- [Feature] Added Scamming feature (beta) to Dr0p1t-Server [See how to edit Dr0p1t-Server scam ](https://github.com/D4Vinci/Dr0p1t-Framework#work-with-dr0p1t-server)
 - [Stealth] Clear event log after finishing
 - [Improve] Added install.sh to make installing on Linux more easy
 - [Improve] Persistence modules are now improved and recoded to work much better.
