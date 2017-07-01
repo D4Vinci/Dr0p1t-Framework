@@ -15,5 +15,4 @@ def check():
 	if version != file_data:
 		colored_print('\n[*] New Version available ! Visit: https://github.com/D4Vinci/Dr0p1t-Framework\n',"y")
 	else:
-		pass
 		colored_print('[*] Your version is up-to-date ;)',"b")

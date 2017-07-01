@@ -2,7 +2,7 @@
 from core.color import *
 from core import color
 from os.path import *
-import random
+import random,os
 global banners, info
 
 banners = ['''
@@ -30,10 +30,17 @@ banners = ['''
     \_______|/    | |       .       '._.'  /    .'     '.                              |  '.'
                   |_|        '._         .'   '-----------'                            |   /
                                 '-....-'`                                              `'-'
-''']
-info = "\tAuthor  : Karim Shoair ( D4Vinci )\n\tVersion : {}  Codename : {}\n".format( open( join( dirname(__file__), 'version.txt') ,"r" ).read().strip(), open( join( dirname(__file__), 'codename.txt') ,"r" ).read().strip() )
-def random_banner(c1="r",c2="y"):
-    global banners ,info
-    c2 = random.choice('gybmc')
+''', open(os.path.join( os.path.dirname(__file__),"logos", "spider_banner.txt" ) ).read(),
+open(os.path.join( os.path.dirname(__file__),"logos", "brain_banner.txt" ) ).read(),
+open(os.path.join( os.path.dirname(__file__),"logos", "butterfly_banner.txt" ) ).read()
+]
+
+info = "\tAuthor  : Karim Shoair ( D4Vinci )\n\tVersion : {}  Codename : {}".format( open( join( dirname(__file__), 'version.txt') ,"r" ).read().strip(), open( join( dirname(__file__), 'codename.txt') ,"r" ).read().strip() )
+
+def random_banner():
+    global G, Y, B, R, W , M , C , end
+    c1=R
+    set_colors()
+    c2 = random.choice([G, Y, B, M , C])
     banner = random.choice(banners)
     print_banner( banner ,info ,c1 ,c2 )

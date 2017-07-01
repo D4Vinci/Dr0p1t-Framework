@@ -1,4 +1,22 @@
-# Version 1.2 ( Stable )
+# Version 1.3
+## A huge update to fix and make improvements like :
+- [Feature] Adding spoof extension feature so now you can change the file extension and icon to make it full spoof :smile:
+- [Improve] Added OSX support ( Thanks to @sm4sh3r )
+- [Improve] Now there will be debug file when happen error in compiling with Pyinstaller.
+- [BUG fix] Full rewriting the framework to improve the executions methods and fix all the errors
+- [BUG fix] Bypassed the error in the Pyinstaller **"FATAL ERROR"** with replacing subprocess Pipes with files :smile:
+- [Stealth] Escaping disk forensics by making all the files dropper create and dropper also cleans its content before deletion.
+- [Feature] Adds ZIP files support so now you can compress your executable to zip file before uploading
+- [Feature] Added Dr0p1t-Server feature (beta) so now you can work from browser [See how to work with Dr0p1t-Server](https://github.com/D4Vinci/Dr0p1t-Framework#Work-with-Dr0p1t-Server)
+- [Feature] Added Scamming feature (beta) to Dr0p1t-Server [See how to edit Dr0p1t-Server scam ](https://github.com/D4Vinci/Dr0p1t-Framework#Work-with-Dr0p1t-Server)
+- [Stealth] Clear event log after finishing
+- [Improve] Added install.sh to make installing on Linux more easy
+- [Improve] Persistence modules are now improved and recoded to work much better.
+- [Feature] Added new a new-hard-to-detect persistence module ( Adding your file to powershell user profile so your file will be downloaded and ran every time powershell.exe run if it doesn't exist).
+- [Feature] Added a new module to bypass UAC and run your malware as admin
+
+
+# Version 1.2
 ## A huge update to fix some things like add-cross compile problem and some improvements :
 - Pyinstaller compiling in Linux using wine
 - Pyinstaller compiling in Windows will not use UPX and that will fix the compiling in windows
@@ -24,5 +42,5 @@
 - Improved or fixed the startup persistence module .
 - Some improvements and fixes.
 
-# Version 1.0 (Beta)
+# Version 1.0 (Alpha)
 ### The first release :smile:

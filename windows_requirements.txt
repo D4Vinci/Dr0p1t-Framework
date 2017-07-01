@@ -1,2 +1,3 @@
+pyinstaller>=3.2.1
 win_unicode_console>=0.5 
 colorama>=0.3.7

