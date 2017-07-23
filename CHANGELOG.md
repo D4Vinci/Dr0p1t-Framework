@@ -1,3 +1,9 @@
+# Version 1.3.1
+# A small update to fix things
+- Fixed Add to startup function ( Sorry forgot to add that function ! )
+- Improved download function so now it can download big files.
+- Fixed the SyntaxError in RunAs function.
+
 # Version 1.3
 ## A huge update to fix and make improvements like :
 - [Feature] Adding spoof extension feature so now you can change the file extension and icon to make it full spoof :smile:

