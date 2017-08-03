@@ -1,3 +1,8 @@
+# Version 1.3.2
+# Another small update to fix things
+- Fixed the path error in the new download function
+- Improved the download function so it first store the file in the memory till the downloading complete then saves it in a file and hides it (Useful when download  big files)
+
 # Version 1.3.1
 # A small update to fix things
 - Fixed Add to startup function ( Sorry forgot to add that function ! )

