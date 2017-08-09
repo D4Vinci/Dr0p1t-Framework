@@ -1,3 +1,7 @@
+# Version 1.3.2.1
+# A small fix to the download function
+- Fixed the permission issue that made the dropper not working.
+
 # Version 1.3.2
 # Another small update to fix things
 - Fixed the path error in the new download function

