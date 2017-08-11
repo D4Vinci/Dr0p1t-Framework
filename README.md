@@ -96,6 +96,7 @@ options:
 - Modules in windows_requirements.txt
 
 # Installation
+>There's a list here for all official videos for installing and using Dr0p1t [Playlist](https://www.youtube.com/playlist?list=PLn3wMo250kMb1w7W7sUcQi6smA77V2men)
 - On Linux
 ```
 git clone https://github.com/D4Vinci/Dr0p1t-Framework.git
@@ -116,7 +117,7 @@ python Dr0p1t.py
 
 ### Tested on:
 
-- Kali Linux - SANA
+- Kali Linux Rolling
 - Ubuntu 14.04-16.04 LTS
 - Windows 10/8.1/8
 
