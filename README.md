@@ -171,7 +171,8 @@ To replace the scam with yours replace the file "Scam.html" content with yours b
 
 ## Donation
 If you liked my work and want to support me , you can give me a cup of coffee :)
-<img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/donate.png" width="100%"></img>
+
+<img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/donate.png"></img>
 
 bitcoin address: 1f4KfYikfqHQzEAsAGxjq46GdrBKc8jrG
 
