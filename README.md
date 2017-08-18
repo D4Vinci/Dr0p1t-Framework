@@ -169,6 +169,12 @@ To replace the scam with yours replace the file "Scam.html" content with yours b
 ## Contact
 - [Twitter](https://twitter.com/D4Vinci1)
 
+## Donation
+If you liked my work and want to support me , you can give me a cup of coffee :)
+<img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/donate.png" width="100%"></img>
+
+bitcoin address: 1f4KfYikfqHQzEAsAGxjq46GdrBKc8jrG
+
 ## Disclaimer
 Dr0p1t Framework not responsible for misuse and for illegal purposes. Use it only for Pentest or educational purpose !!!
 
