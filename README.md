@@ -1,7 +1,7 @@
 # Dr0p1t-Framework [![n0where best cybersecurity tools](https://img.shields.io/badge/25-n0where%20best%20cybersecurity%20tools-red.svg)](https://n0where.net/best-cybersecurity-tools) [![Python 3.5](https://img.shields.io/badge/Python-3.5-yellow.svg)](http://www.python.org/download/) [![Python 2.7](https://img.shields.io/badge/Python-2.7-yellow.svg)](http://www.python.org/download/) ![Build Status](https://img.shields.io/badge/Version-1.3.2.1-red.svg)
 
 Have you ever heard about trojan droppers ?
-In short dropper is type of trojans that downloads other malwares and Dr0p1t gives you the chance to create a stealthy dropper that bypass most AVs and have a lot of tricks ( Trust me :D ) ;)
+In short dropper is type of malware that downloads other malwares and Dr0p1t gives you the chance to create a stealthy dropper that bypass most AVs and have a lot of tricks ( Trust me :D ) ;)
 
 # Features
 **+ Generated executable properties:**
