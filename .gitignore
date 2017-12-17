@@ -55,6 +55,8 @@ local_settings.py
 
 # Flask instance folder
 instance/
+output/
+temp/
 
 # Scrapy stuff:
 .scrapy
