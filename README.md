@@ -1,3 +1,5 @@
+# Not maintained currently (Wait for the next version)
+-----
 # Dr0p1t-Framework [![n0where best cybersecurity tools](https://img.shields.io/badge/25-n0where%20best%20cybersecurity%20tools-red.svg)](https://n0where.net/best-cybersecurity-tools) [![Python 3.5](https://img.shields.io/badge/Python-3.5-yellow.svg)](http://www.python.org/download/) [![Python 2.7](https://img.shields.io/badge/Python-2.7-yellow.svg)](http://www.python.org/download/) ![Build Status](https://img.shields.io/badge/Version-1.3.2.1-red.svg)
 
 Have you ever heard about trojan droppers ?
@@ -101,84 +103,4 @@ options:
 ```
 git clone https://github.com/D4Vinci/Dr0p1t-Framework.git
 chmod 777 -R Dr0p1t-Framework
-cd Dr0p1t-Framework
-sudo chmod +x install.sh
-./install.sh
-python Dr0p1t.py
-```
-
-- On Windows (After downloading ZIP and upzip it)
-```
-cd Dr0p1t-Framework-master
-python -m pip install -r windows_requirements.txt
-python Dr0p1t.py
-```
->Note : in python 2.7 you don't have pip so install it first from get-pip.py script [Google it]
-
-### Tested on:
-
-- Kali Linux Rolling
-- Ubuntu 14.04-16.04 LTS
-- Windows 10/8.1/8
-
-# Work with Dr0p1t-Server
->Note : Server is still in beta version and it have a lot of features to add and also a better design [ Need a designer to contribute :D ]
-
-## Prerequisites
-- Stable internet connection.
-- Port 5000 not used and firewall configured to not block connection from it
-
-## Installation & run server
-On Linux and Windows it's the same after installing Dr0p1t by doing the steps mentioned above, install modules in server_requirements.txt by using pip like :
-
-```
-python -m pip install -r server_requirements.txt
-```
-Now let's run our server script :
-
-```
-python Dr0p1t_Server.py
-```
-After running the server script, it will start to listen to all the connection coming to port 5000 using flask.
-
-Now to use the server from your device open in browser either 127.0.0.1:5000 or [Your IP]:5000.
-
-To open it from other devices in LAN open [Your Local IP]:5000 and for other devices in WAN open [Your Global IP]:5000 but make sure first that you configured you router to forward port 5000 connection to you.
-
-After opening the serve page you will see a simple website with a simple design asking you for data needed [See server screenshots](#server-screenshots)
-
-Then submit the data then it will be verified through some processes then the exe file will be generated and you will be redirected to page telling you the scam link.
-
-After entering the link you will see a scam to download the dropper which it by default Adobe flash download page.
-To replace the scam with yours replace the file "Scam.html" content with yours but remember the variables ( Don't remove it ).
-
-## Server screenshots
-<img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Linux/LinuxServerTest-1.png" width="100%"></img>
-<img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Linux/LinuxServerTest-2.png" width="100%"></img>
-<img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Linux/LinuxServerTest-3.png" width="100%"></img>
-<img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Linux/LinuxServerTest-4.png" width="100%"></img>
-
-[See more for Windows](https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Windows)
-[See more for Linux](https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/Linux)
-
-# No distribute scan ( Please don't scan with virus total:3 )
-<img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/Screenshots/nodistribute_scan.png" width="100%"></img>
-
-## Todo [Check out this link](https://github.com/D4Vinci/Dr0p1t-Framework/projects/1)
-
-## Contact
-- [Twitter](https://twitter.com/D4Vinci1)
-
-## Donation
-If you liked my work and want to support me , you can give me a cup of coffee :)
-
-<img src="https://github.com/D4Vinci/Dr0p1t-Framework/blob/master/donate.png"></img>
-
-bitcoin address: 1f4KfYikfqHQzEAsAGxjq46GdrBKc8jrG
-
-## Disclaimer
-Dr0p1t Framework not responsible for misuse and for illegal purposes. Use it only for Pentest or educational purpose !!!
-
-Copying a code from this framework or using it in another tool is accepted as you mention where you get it from :smile:
-
-> Pull requests are always welcomed :D
+c
